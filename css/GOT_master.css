@@ -108,6 +108,21 @@ main {
 	display: none;
 }
 
+.house-info
+{
+	text-align: center; 
+	width: 50%;
+	margin: 0 auto;
+	color: white;
+	letter-spacing: 2px;
+	font-size: 14px
+}
+
+.houseName
+{
+	font-size: 60px;
+}
+
 .show-lightBox
 {
 	display: block;
