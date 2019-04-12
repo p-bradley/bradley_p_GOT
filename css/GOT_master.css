@@ -31,20 +31,20 @@ main {
 #imageContainer {
 	width:600px;
 	height:360px;
-	background-color:grey;
+	background-color: grey;
 	margin:0 auto;
-	/*overflow:hidden;*/
+	overflow: hidden;
 }
 
-#houseImages { position:relative; width:4000px; transition: all .5s; }
+#houseImages { position: relative; width: 4000px; /*transition: all .5s; this will play the video after clicking on the banner*/}
 #houseImages img { float:left; }
 
 #bottomNav { margin-top:30px; }
 
 #navList li {
-	display:inline;
-	list-style-type:none;
-	padding:0px 10px;
+	display: inline;
+	list-style-type: none;
+	padding: 0px 10px;
 	cursor:pointer;
 }
 
@@ -108,9 +108,33 @@ main {
 	display: none;
 }
 
+.house-info
+{
+	text-align: center; 
+	width: 50%;
+	margin: 0 auto;
+	color: white;
+	letter-spacing: 2px;
+	font-size: 14px
+}
+
+.houseName
+{
+	font-size: 60px;
+}
+
 .show-lightBox
 {
 	display: block;
+}
+
+.lightbox-close {
+	position: absolute;
+	color: white;
+	right: 12px;
+	top: 12px;
+	cursor: pointer;
+	font-size: 2em;
 }
 
 video {
