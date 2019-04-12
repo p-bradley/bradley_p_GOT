@@ -66,46 +66,91 @@
 
 
 	function showLightbox() {
+                    //grab the right video source
 
-		let targetHouse = this.className.split(" ")[1];
+        //get the lowercase house name from the class list
+        let targetHouse = this.className.split(" ")[1];
 
-		let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
+        // make sure the names amtch - needs to be uppercase
+        let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
 
-		//backticks are JS strings
-		houseName.textContent = `House ${targetSrc}`;
 
-		houseInfo.textContent = houseData[0];
+        // change the paragraph text
+        houseName.textContent = `House ${targetSrc}`; // back tick are JS template strings
 
-		video.src = `video/House-${targetSrc}.mp4`;
+        // this will only ever retrieve the first index in the array
+        houseInfo.textContent = houseData[0];
 
-		lightBox.classList.add('show-lightBox');
+        TweenMax.to(houseName, 0, {y:-1000, ease:Bounce.easeOut});
+        TweenMax.to(houseName, 1.5, {y:0, ease:Bounce.easeOut, delay:0.5, onCompleteParams:[lightBox], onComplete:function(){lightBox.classList.add('show-lightBox'); 
+        video.src = `video/House-${targetSrc}.mp4`;}});        
+        video.load();
+        video.play();
 
-		video.load();
-		video.play();
-	}
+    }
 
 	function hideLightbox() {
 		lightBox.classList.remove('show-lightBox');
+		//rewind the video and also pause it
 		video.currentTime = 0;
 		video.pause();
+
+		if (totalOffset == 600) {
+				houseName.textContent = `House ${houseData[1][0]}`;
+				houseInfo.textContent = houseData[1][1];
+			}
+		if (totalOffset == 1200) {
+				houseName.textContent = `House ${houseData[2][0]}`;
+				houseInfo.textContent = houseData[2][1];
+			}
+		if (totalOffset == 1800) {
+				houseName.textContent = `House ${houseData[3][0]}`;
+				houseInfo.textContent = houseData[3][1];
+			}
+		if (totalOffset == 2400) {
+				houseName.textContent = `House ${houseData[4][0]}`;
+				houseInfo.textContent = houseData[4][1];
+			}
+		if (totalOffset == 3000) {
+				houseName.textContent = `House ${houseData[3][0]}`;
+				houseInfo.textContent = houseData[4][1];
+			}	
 	}
 
 	function animateBanner() {
-		const offSet = 600;
+		const offset = 600;
 
-		totalOffset = this.dataset.offset * offSet; /* + "px"; */
-
-		houseName.textContent = `House ${houseData[0][0]}`;
-
-
-		houseInfo.textContent = houseData[0][1];
-
+		totalOffset = this.dataset.offset * offset; /*+ "px";*/
 
 		TweenMax.to(banners, 0.8, {right: totalOffset});
+		houseName.textContent = `House ${houseData[0][0]}`;
+		houseInfo.textContent = houseData[0][1];
+		if (totalOffset == 600) {
+				houseName.textContent = `House ${houseData[1][0]}`;
+				houseInfo.textContent = houseData[1][1];
+			}
+		if (totalOffset == 1200) {
+				houseName.textContent = `House ${houseData[2][0]}`;
+				houseInfo.textContent = houseData[2][1];
+			}
+		if (totalOffset == 1800) {
+				houseName.textContent = `House ${houseData[4][0]}`;
+				houseInfo.textContent = houseData[4][1];
+			}
+		if (totalOffset == 2400) {
+				houseName.textContent = `House ${houseData[3][0]}`;
+				houseInfo.textContent = houseData[3][1];
+			}
+		if (totalOffset == 3000) {
+				houseName.textContent = `House ${houseData[5][0]}`;
+				houseInfo.textContent = houseData[5][1];
+			}			
+
 	}
 
+		
 	/*shields can also be sigil*/
-	//shields.forEach(shield => shield.addEventListener('click', showLightbox));
+	shields.forEach(shield => shield.addEventListener('click', showLightbox));
 
 	shields.forEach(shield => shield.addEventListener('click', animateBanner));
 
